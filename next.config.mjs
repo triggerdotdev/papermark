@@ -41,6 +41,11 @@ const nextConfig = {
         port: "3000",
       },
       {
+        // eric img
+        protocol: "https",
+        hostname: "xjkndytzmbyj0kzm.public.blob.vercel-storage.com",
+      },
+      {
         // staging img
         protocol: "https",
         hostname: "36so9a8uzykxknsu.public.blob.vercel-storage.com",
