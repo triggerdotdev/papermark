@@ -1,15 +1,15 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { getServerSession } from "next-auth/next";
+import { errorhandler } from "@/lib/errorHandler";
+import notion from "@/lib/notion";
 import prisma from "@/lib/prisma";
-import { authOptions } from "../../../auth/[...nextauth]";
+import { getTeamWithUsersAndDocument } from "@/lib/team/helper";
+import { convertPDFToImages } from "@/lib/trigger/convertPDFToImages";
 import { CustomUser } from "@/lib/types";
 import { getExtension, log } from "@/lib/utils";
-import { getTeamWithUsersAndDocument } from "@/lib/team/helper";
-import { errorhandler } from "@/lib/errorHandler";
-import { client } from "@/trigger";
-import notion from "@/lib/notion";
-import { parsePageId } from "notion-utils";
 import { DocumentStorageType } from "@prisma/client";
+import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth/next";
+import { parsePageId } from "notion-utils";
+import { authOptions } from "../../../auth/[...nextauth]";
 
 export default async function handle(
   req: NextApiRequest,
@@ -151,13 +151,9 @@ export default async function handle(
 
       // skip triggering convert-pdf-to-image job for "notion" documents
       if (type !== "notion") {
-        // trigger document uploaded event to trigger convert-pdf-to-image job
-        await client.sendEvent({
-          id: document.versions[0].id, // unique eventId for the run
-          name: "document.uploaded",
+        await convertPDFToImages.trigger({
           payload: {
             documentVersionId: document.versions[0].id,
-            teamId: teamId,
           },
         });
       }
