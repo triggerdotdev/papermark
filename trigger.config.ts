@@ -14,4 +14,6 @@ export const config: TriggerConfig = {
     },
   },
   dependenciesToBundle: [/@sindresorhus/, "escape-string-regexp"],
+  additionalFiles: ["./prisma/schema.prisma"],
+  additionalPackages: ["prisma@5.11.0"],
 };
