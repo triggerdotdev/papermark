@@ -7,6 +7,9 @@ import { getFile } from "../files/get-file";
 
 export const convertPage = task({
   id: "convert-page",
+  queue: {
+    concurrencyLimit: 10,
+  },
   run: async (
     payload: {
       documentVersionId: string;

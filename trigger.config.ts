@@ -1,4 +1,5 @@
 import type { TriggerConfig } from "@trigger.dev/sdk/v3";
+import { PrismaInstrumentation } from "@prisma/instrumentation";
 
 export const config: TriggerConfig = {
   project: "proj_olbfrbvscqekuyhsrzst",
@@ -16,4 +17,5 @@ export const config: TriggerConfig = {
   dependenciesToBundle: [/@sindresorhus/, "escape-string-regexp"],
   additionalFiles: ["./prisma/schema.prisma"],
   additionalPackages: ["prisma@5.11.0"],
+  instrumentations: [new PrismaInstrumentation()],
 };

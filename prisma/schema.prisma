@@ -7,7 +7,7 @@ datasource db {
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["relationJoins"]
+  previewFeatures = ["relationJoins", "tracing"]
 }
 
 model Account {
@@ -322,6 +322,6 @@ model Folder {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([parentId])
   @@unique([teamId, path])
+  @@index([parentId])
 }
