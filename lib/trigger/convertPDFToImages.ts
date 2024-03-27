@@ -40,13 +40,15 @@ export const convertPage = task({
 
     const response = await retry.fetch(url, {
       retry: {
-        "5xx": {
-          strategy: "backoff",
-          maxAttempts: 5,
-          minTimeoutInMs: 1000,
-          maxTimeoutInMs: 10000,
-          factor: 2,
-          randomize: true,
+        byStatus: {
+          "5xx": {
+            strategy: "backoff",
+            maxAttempts: 5,
+            minTimeoutInMs: 1000,
+            maxTimeoutInMs: 10000,
+            factor: 2,
+            randomize: true,
+          },
         },
       },
     });

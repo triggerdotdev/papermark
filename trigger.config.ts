@@ -4,6 +4,7 @@ import { PrismaInstrumentation } from "@prisma/instrumentation";
 export const config: TriggerConfig = {
   project: "proj_olbfrbvscqekuyhsrzst",
   triggerDirectories: ["./lib/trigger"],
+  instrumentations: [new PrismaInstrumentation()],
   retries: {
     enabledInDev: false,
     default: {
@@ -17,5 +18,4 @@ export const config: TriggerConfig = {
   dependenciesToBundle: [/@sindresorhus/, "escape-string-regexp"],
   additionalFiles: ["./prisma/schema.prisma"],
   additionalPackages: ["prisma@5.11.0"],
-  instrumentations: [new PrismaInstrumentation()],
 };

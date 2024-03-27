@@ -14,7 +14,7 @@
     "vercel-build": "prisma migrate deploy && next build",
     "email": "email dev --dir ./components/emails --port 3001",
     "trigger:dev": "npx @trigger.dev/cli@latest dev",
-    "trigger:dev:v3": "npx trigger.dev@v3-canary dev",
+    "trigger:dev:v3": "npx trigger.dev@beta dev",
     "stripe:webhook": "pkgx stripe listen --forward-to localhost:3000/api/stripe/webhook"
   },
   "dependencies": {
@@ -53,9 +53,9 @@
     "@tailwindcss/typography": "^0.5.10",
     "@teamhanko/passkeys-next-auth-provider": "^0.2.7",
     "@tremor/react": "^3.14.1",
-    "@trigger.dev/nextjs": "0.0.0-v3-canary-20240324201508",
-    "@trigger.dev/react": "0.0.0-v3-canary-20240324201508",
-    "@trigger.dev/sdk": "0.0.0-v3-canary-20240324201508",
+    "@trigger.dev/nextjs": "^3.0.0-beta.0",
+    "@trigger.dev/react": "^3.0.0-beta.0",
+    "@trigger.dev/sdk": "^3.0.0-beta.0",
     "@upstash/qstash": "^2.3.1",
     "@upstash/ratelimit": "^1.0.1",
     "@upstash/redis": "^1.28.4",
