@@ -180,8 +180,8 @@ export const convertPDFToImages = task({
       pageNumbers.push(i);
     }
 
-    const results = await convertPage.batchTriggerAndWait({
-      items: pageNumbers.map((pageNumber) => ({
+    const results = await convertPage.batchTriggerAndWait(
+      pageNumbers.map((pageNumber) => ({
         payload: {
           documentVersionId,
           pageNumber,
@@ -189,7 +189,7 @@ export const convertPDFToImages = task({
           teamId: team.id,
         },
       })),
-    });
+    );
 
     if (results.runs.some((run) => !run.ok)) {
       throw new Error(`Failed to convert PDF to images`);

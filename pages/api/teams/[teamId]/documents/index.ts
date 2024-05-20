@@ -152,9 +152,7 @@ export default async function handle(
       // skip triggering convert-pdf-to-image job for "notion" documents
       if (type !== "notion") {
         await convertPDFToImages.trigger({
-          payload: {
-            documentVersionId: document.versions[0].id,
-          },
+          documentVersionId: document.versions[0].id,
         });
       }
 
